@@ -1,2 +1,2 @@
-# Business Data Analytics
-Key notes on Business Data Analytics, I am going to make it available in Python language.
+# Data Science
+Key notes and my learnings in Data Science, Language used is Python.
