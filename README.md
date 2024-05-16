@@ -1,2 +1,3 @@
-# Data Science
-Key notes and my learnings in Data Science, Language used is Python.
+# Vj Analytics
+Key notes and my learnings in Analytics and AI.
+Language used is Python.
