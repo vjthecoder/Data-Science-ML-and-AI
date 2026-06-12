@@ -9,6 +9,9 @@ Generated via seeded `random`/`numpy` scripts for reproducibility.
 | `sales.csv` | 500 | Synthetic order-level sales transactions | Week 1 notebooks 06; Labs 2, 3 (via aggregation) |
 | `marketing_campaigns.csv` | 100 | Synthetic ad campaign performance metrics | Week 1 Lab 3 |
 | `ab_test.csv` | 2000 | Synthetic A/B test results (control vs treatment) | Week 1 Lab 4 |
+| `leads.csv` | 600 | Synthetic sales leads (engagement, source, conversion) | Week 2 notebooks 01, 02, 04, 07; Lab 1 |
+| `churn.csv` | 800 | Synthetic telecom churn dataset (tenure, contract, charges) | Week 2 notebooks 01-07; Lab 2 |
+| `marketing_response.csv` | 1000 | Synthetic campaign response dataset | Week 2 Lab 3 |
 
 ## License
 All synthetic datasets in this folder are released under the same license as this
