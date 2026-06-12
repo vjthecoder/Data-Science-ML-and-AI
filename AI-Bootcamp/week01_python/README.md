@@ -12,7 +12,19 @@
 
 ## Prerequisites
 - None — absolute beginner friendly
-- A computer with Python 3.10+ and Jupyter installed
+- A computer with Python 3.10+ and Marimo installed (`pip install marimo`)
+
+## Lesson Plan
+See [`LESSON_PLAN.md`](LESSON_PLAN.md) for the day-by-day schedule.
+
+## Diagrams
+See [`../diagrams/week01_python/`](../diagrams/week01_python/README.md)
+
+## Datasets
+- `../resources/datasets/customers.csv`
+- `../resources/datasets/sales.csv`
+- `../resources/datasets/marketing_campaigns.csv`
+- `../resources/datasets/ab_test.csv`
 
 ## Modules
 1. Python Fundamentals — Variables, Data Types, Operators
@@ -25,25 +37,28 @@
 8. SQL Integration — sqlite3, pandas.read_sql
 
 ## Theory Notes
-See `notebooks/01_python_fundamentals.ipynb` through `notebooks/08_sql_integration.ipynb`
-for theory explained at three levels (10-year-old / college student / industry professional),
-with visual explanations, simple examples, and real-world examples.
+See `notebooks/01_python_fundamentals.py` through `notebooks/08_sql_integration.py`
+(Marimo notebooks — run with `marimo edit <file>`) for theory explained at three levels
+(10-year-old / college student / industry professional), with visual explanations, simple
+examples, and real-world examples.
 
-## Jupyter Notebooks
-- `notebooks/01_python_fundamentals.ipynb`
-- `notebooks/02_control_flow.ipynb`
-- `notebooks/03_functions_oop.ipynb`
-- `notebooks/04_numpy.ipynb`
-- `notebooks/05_pandas.ipynb`
-- `notebooks/06_matplotlib_seaborn.ipynb`
-- `notebooks/07_apis_json.ipynb`
-- `notebooks/08_sql_integration.ipynb`
+## Marimo Notebooks
+Run any notebook with: `marimo edit week01_python/notebooks/<file>.py`
+
+- `notebooks/01_python_fundamentals.py`
+- `notebooks/02_control_flow.py`
+- `notebooks/03_functions_oop.py`
+- `notebooks/04_numpy.py`
+- `notebooks/05_pandas.py`
+- `notebooks/06_matplotlib_seaborn.py`
+- `notebooks/07_apis_json.py`
+- `notebooks/08_sql_integration.py`
 
 ## Coding Labs
-- `labs/lab1_customer_data_analysis.ipynb` — Clean & analyze a customer dataset with Pandas
-- `labs/lab2_sales_dashboard.ipynb` — Build a sales dashboard with Matplotlib/Seaborn
-- `labs/lab3_marketing_analytics.ipynb` — Marketing campaign analytics with Pandas
-- `labs/lab4_ab_testing.ipynb` — A/B testing dataset analysis & statistical comparison
+- `labs/lab1_customer_data_analysis.py` — Clean & analyze a customer dataset with Pandas
+- `labs/lab2_sales_dashboard.py` — Build a sales dashboard with Matplotlib/Seaborn
+- `labs/lab3_marketing_analytics.py` — Marketing campaign analytics with Pandas
+- `labs/lab4_ab_testing.py` — A/B testing dataset analysis & statistical comparison
 
 ## Mini Projects
 - Customer Data Analysis Report
