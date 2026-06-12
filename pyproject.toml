@@ -1,0 +1,11 @@
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+exclude = ["AI-Bootcamp/week05_n8n/workflows"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]
+ignore = ["E501"]
+
+[tool.ruff.lint.per-file-ignores]
+"*.py" = ["F401"]  # marimo cells often define unused-looking return vars

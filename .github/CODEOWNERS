@@ -1,0 +1,14 @@
+# Default owners for everything in the repo
+*                               @vjthecoder
+
+# Curriculum content
+/AI-Bootcamp/week01_python/     @vjthecoder
+/AI-Bootcamp/week02_ml/         @vjthecoder
+/AI-Bootcamp/week03_genai/      @vjthecoder
+/AI-Bootcamp/week04_rag/        @vjthecoder
+/AI-Bootcamp/week05_n8n/        @vjthecoder
+/AI-Bootcamp/week06_capstone/   @vjthecoder
+
+# Infrastructure
+/.github/                       @vjthecoder
+/.pre-commit-config.yaml        @vjthecoder
