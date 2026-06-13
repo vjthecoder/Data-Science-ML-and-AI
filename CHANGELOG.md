@@ -6,6 +6,11 @@ All notable changes to this project are documented in this file. Format based on
 
 ## [Unreleased]
 ### Added
+- Week 4: RAG (Retrieval Augmented Generation) — complete (6 Marimo notebooks on architecture,
+  chunking, vector search FAISS/Chroma, hybrid search + reranking, metadata filtering,
+  evaluation; 3 labs for LangChain/LlamaIndex/hybrid+rerank; PDF Chatbot project with Streamlit
+  app + reusable rag_core; assignments, solutions, lesson plan, diagrams, interview questions).
+  All concept notebooks run offline; generation uses Anthropic `claude-opus-4-8`.
 - Week 3: GenAI Foundations & LLM Working Procedure — complete (7 Marimo notebooks on
   transformers/attention, tokens/embeddings, vector DBs, prompt engineering, tool calling,
   MCP, multi-agent systems; 5 labs for OpenAI/Anthropic/Gemini/open-source/agent; assignments,

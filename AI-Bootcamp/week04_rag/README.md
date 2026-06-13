@@ -12,6 +12,13 @@
 
 ## Prerequisites
 - Week 3 (embeddings, vector databases, prompt engineering)
+- Optional: `ANTHROPIC_API_KEY` for generation (concept notebooks have offline fallbacks)
+
+## Lesson Plan
+See [`LESSON_PLAN.md`](LESSON_PLAN.md) for the day-by-day schedule.
+
+## Diagrams
+See [`../diagrams/week04_rag/`](../diagrams/week04_rag/README.md)
 
 ## Modules
 1. RAG Architecture Overview
@@ -26,18 +33,20 @@
 ## Theory Notes
 See `notebooks/` for diagrams of the RAG pipeline and worked examples for each stage.
 
-## Jupyter Notebooks
-- `notebooks/01_rag_architecture.ipynb`
-- `notebooks/02_chunking_strategies.ipynb`
-- `notebooks/03_vector_search_faiss_chroma.ipynb`
-- `notebooks/04_hybrid_search_reranking.ipynb`
-- `notebooks/05_metadata_filtering.ipynb`
-- `notebooks/06_rag_evaluation.ipynb`
+## Marimo Notebooks
+Run any notebook with: `marimo edit week04_rag/notebooks/<file>.py`
+
+- `notebooks/01_rag_architecture.py`
+- `notebooks/02_chunking_strategies.py`
+- `notebooks/03_vector_search_faiss_chroma.py`
+- `notebooks/04_hybrid_search_reranking.py`
+- `notebooks/05_metadata_filtering.py`
+- `notebooks/06_rag_evaluation.py`
 
 ## Coding Labs
-- `labs/lab1_langchain_rag.ipynb` — RAG pipeline with LangChain + Chroma
-- `labs/lab2_llamaindex_rag.ipynb` — RAG pipeline with LlamaIndex + FAISS
-- `labs/lab3_hybrid_search.ipynb` — BM25 + vector hybrid retrieval with reranking
+- `labs/lab1_langchain_rag.py` — RAG pipeline with LangChain + Chroma
+- `labs/lab2_llamaindex_rag.py` — RAG pipeline with LlamaIndex + FAISS
+- `labs/lab3_hybrid_search.py` — BM25 + vector hybrid retrieval with reranking
 
 ## Mini Projects
 - **PDF Chatbot** — chat over uploaded PDFs (`../projects/pdf_chatbot/`)
