@@ -6,6 +6,12 @@ All notable changes to this project are documented in this file. Format based on
 
 ## [Unreleased]
 ### Added
+- Week 6: Final Project, Deployment & GitHub Packaging — complete. Production **AI Career Coach**
+  capstone (`week06_capstone/app/`): resume_parser, RAG knowledge base, agent (resume analysis,
+  skill-gap, interview questions, learning path) with offline stub fallback, FastAPI backend with
+  Pydantic validation, Streamlit UI, offline pytest suite, Dockerfile, `.env.example`. Seven
+  deployment guides (Docker, Streamlit Cloud, FastAPI, AWS, GCP, Render, Railway). Capstone
+  notebooks, lesson plan, diagrams, interview questions, and grading rubric. All 6 weeks complete.
 - Week 5: AI Automation with n8n — complete (7 importable workflow JSON exports: beginner,
   email automation, lead qualification, AI agent with tools+memory, CRM automation, WhatsApp
   assistant, multi-agent pipeline; workflows README with import guide; assignments, solutions,

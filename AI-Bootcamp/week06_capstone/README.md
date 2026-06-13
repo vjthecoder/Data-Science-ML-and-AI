@@ -13,6 +13,23 @@
 
 ## Prerequisites
 - Weeks 1-5 completed
+- `ANTHROPIC_API_KEY` for live output (the app runs in offline stub mode without it)
+
+## Lesson Plan
+See [`LESSON_PLAN.md`](LESSON_PLAN.md) for the day-by-day schedule.
+
+## Diagrams
+See [`../diagrams/week06_capstone/`](../diagrams/week06_capstone/README.md)
+
+## Quick Start
+```bash
+cd app
+pip install -r requirements.txt
+cp .env.example .env            # add ANTHROPIC_API_KEY (git-ignored)
+python -m pytest test_app.py -q # offline smoke tests
+uvicorn main:app --reload       # FastAPI at /docs
+# or: streamlit run streamlit_app.py
+```
 
 ## Features
 1. **Resume Analysis** — parse and analyze uploaded resumes
