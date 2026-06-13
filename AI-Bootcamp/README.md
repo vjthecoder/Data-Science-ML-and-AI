@@ -6,6 +6,11 @@ production-ready GenAI systems (RAG, agents, automation, and a capstone career-c
 Each concept is taught with: Theory -> Visual Explanation -> Simple Example -> Real World
 Example -> Coding Exercise -> Assignment -> Interview Questions -> Industry Use Cases.
 
+**Status: v1.0.0 — all 6 weeks complete.** Notebooks use [Marimo](https://marimo.io)
+(`.py` files, run with `marimo edit <file>`). Concept notebooks include offline-safe demos, so
+the curriculum runs without paid API keys; LLM examples use the Anthropic SDK
+(`claude-opus-4-8`) with keys loaded from the environment.
+
 ## Curriculum
 
 | Week | Topic | Folder |

@@ -5,6 +5,9 @@ All notable changes to this project are documented in this file. Format based on
 [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
+
+## [1.0.0] - 2026-06-13
+All six weeks of the **AI Engineering Bootcamp** are complete and ready for learners.
 ### Added
 - Week 6: Final Project, Deployment & GitHub Packaging — complete. Production **AI Career Coach**
   capstone (`week06_capstone/app/`): resume_parser, RAG knowledge base, agent (resume analysis,
@@ -27,6 +30,11 @@ All notable changes to this project are documented in this file. Format based on
   MCP, multi-agent systems; 5 labs for OpenAI/Anthropic/Gemini/open-source/agent; assignments,
   solutions, lesson plan, diagrams, interview questions). Anthropic examples use current SDK
   patterns (`claude-opus-4-8`, `messages.create`, tool-use loop, structured outputs).
+- Course review and 2026 redesign plan (`AI-Bootcamp/COURSE_REVIEW_2026.md`)
+- Week 2: Machine Learning Basics & ML Workflow — complete (7 Marimo notebooks on problem
+  framing/EDA, feature engineering, regression, classification, clustering, evaluation metrics,
+  cross-validation/tuning; 3 labs for lead scoring/churn/marketing response; datasets,
+  assignments, solutions, lesson plan, diagrams, interview questions).
 - Course review and 2026 redesign plan (`AI-Bootcamp/COURSE_REVIEW_2026.md`)
 - Open-source project infrastructure: CI workflow, release workflow, pre-commit hooks,
   issue/PR templates, CONTRIBUTING guide, Code of Conduct, CODEOWNERS
