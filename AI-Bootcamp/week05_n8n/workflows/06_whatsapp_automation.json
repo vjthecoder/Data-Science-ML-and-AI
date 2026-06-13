@@ -1,0 +1,55 @@
+{
+  "name": "06 - WhatsApp Automation: AI order-status assistant",
+  "nodes": [
+    {
+      "parameters": { "updates": ["messages"], "options": {} },
+      "id": "f6000000-0000-0000-0000-000000000001",
+      "name": "WhatsApp Trigger",
+      "type": "n8n-nodes-base.whatsAppTrigger",
+      "typeVersion": 1,
+      "position": [240, 300],
+      "webhookId": "whatsapp-inbound",
+      "credentials": { "whatsAppTriggerApi": { "id": "REPLACE_WITH_WHATSAPP_CREDENTIAL_ID", "name": "WhatsApp account" } }
+    },
+    {
+      "parameters": {
+        "modelId": "claude-opus-4-8",
+        "messages": {
+          "values": [
+            { "role": "system", "content": "You are a friendly order-status assistant. If the message contains an order ID (format ORD-#####), confirm it is being looked up. Otherwise ask for the order ID. Keep replies under 2 sentences." },
+            { "role": "user", "content": "={{$json.messages[0].text.body}}" }
+          ]
+        },
+        "options": { "maxTokens": 200 }
+      },
+      "id": "f6000000-0000-0000-0000-000000000002",
+      "name": "Draft Reply (Claude)",
+      "type": "n8n-nodes-base.anthropic",
+      "typeVersion": 1,
+      "position": [480, 300],
+      "credentials": { "anthropicApi": { "id": "REPLACE_WITH_ANTHROPIC_CREDENTIAL_ID", "name": "Anthropic account" } }
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "REPLACE_WITH_PHONE_NUMBER_ID",
+        "recipientPhoneNumber": "={{$('WhatsApp Trigger').first().json.messages[0].from}}",
+        "textBody": "={{$json.text}}",
+        "additionalFields": {}
+      },
+      "id": "f6000000-0000-0000-0000-000000000003",
+      "name": "Send WhatsApp Reply",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [720, 300],
+      "credentials": { "whatsAppApi": { "id": "REPLACE_WITH_WHATSAPP_CREDENTIAL_ID", "name": "WhatsApp account" } }
+    }
+  ],
+  "connections": {
+    "WhatsApp Trigger": { "main": [[{ "node": "Draft Reply (Claude)", "type": "main", "index": 0 }]] },
+    "Draft Reply (Claude)": { "main": [[{ "node": "Send WhatsApp Reply", "type": "main", "index": 0 }]] }
+  },
+  "active": false,
+  "settings": { "executionOrder": "v1" },
+  "tags": [{ "name": "ai-bootcamp" }, { "name": "week05" }]
+}

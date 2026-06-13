@@ -1,0 +1,74 @@
+{
+  "name": "02 - Email Automation: classify and auto-reply",
+  "nodes": [
+    {
+      "parameters": { "pollTimes": { "item": [{ "mode": "everyMinute" }] }, "filters": {} },
+      "id": "b2000000-0000-0000-0000-000000000001",
+      "name": "Email Trigger (IMAP)",
+      "type": "n8n-nodes-base.emailReadImap",
+      "typeVersion": 2,
+      "position": [240, 300],
+      "credentials": { "imap": { "id": "REPLACE_WITH_IMAP_CREDENTIAL_ID", "name": "IMAP account" } }
+    },
+    {
+      "parameters": {
+        "modelId": "claude-opus-4-8",
+        "messages": {
+          "values": [
+            {
+              "role": "system",
+              "content": "Classify the email into one of: support, sales, spam, other. Reply with only the label."
+            },
+            { "role": "user", "content": "=Subject: {{$json.subject}}\n\nBody: {{$json.text}}" }
+          ]
+        },
+        "options": { "maxTokens": 16 }
+      },
+      "id": "b2000000-0000-0000-0000-000000000002",
+      "name": "Classify with Claude",
+      "type": "n8n-nodes-base.anthropic",
+      "typeVersion": 1,
+      "position": [480, 300],
+      "credentials": { "anthropicApi": { "id": "REPLACE_WITH_ANTHROPIC_CREDENTIAL_ID", "name": "Anthropic account" } }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            { "conditions": { "options": {}, "conditions": [{ "leftValue": "={{$json.text.toLowerCase().trim()}}", "rightValue": "support", "operator": { "type": "string", "operation": "contains" } }] }, "outputKey": "support" },
+            { "conditions": { "options": {}, "conditions": [{ "leftValue": "={{$json.text.toLowerCase().trim()}}", "rightValue": "sales", "operator": { "type": "string", "operation": "contains" } }] }, "outputKey": "sales" }
+          ]
+        },
+        "options": { "fallbackOutput": "extra" }
+      },
+      "id": "b2000000-0000-0000-0000-000000000003",
+      "name": "Route by Category",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3,
+      "position": [720, 300]
+    },
+    {
+      "parameters": {
+        "fromEmail": "support@example.com",
+        "toEmail": "={{$node[\"Email Trigger (IMAP)\"].json.from}}",
+        "subject": "=Re: {{$node[\"Email Trigger (IMAP)\"].json.subject}}",
+        "message": "Thanks for contacting support. A team member will respond within 24 hours.",
+        "options": {}
+      },
+      "id": "b2000000-0000-0000-0000-000000000004",
+      "name": "Auto-Reply (Support)",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [960, 220],
+      "credentials": { "smtp": { "id": "REPLACE_WITH_SMTP_CREDENTIAL_ID", "name": "SMTP account" } }
+    }
+  ],
+  "connections": {
+    "Email Trigger (IMAP)": { "main": [[{ "node": "Classify with Claude", "type": "main", "index": 0 }]] },
+    "Classify with Claude": { "main": [[{ "node": "Route by Category", "type": "main", "index": 0 }]] },
+    "Route by Category": { "main": [[{ "node": "Auto-Reply (Support)", "type": "main", "index": 0 }], [], []] }
+  },
+  "active": false,
+  "settings": { "executionOrder": "v1" },
+  "tags": [{ "name": "ai-bootcamp" }, { "name": "week05" }]
+}

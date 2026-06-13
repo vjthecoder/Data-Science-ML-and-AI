@@ -13,6 +13,15 @@
 - Week 3 (LLM basics, prompt engineering, tool calling)
 - A running n8n instance (cloud or self-hosted via Docker)
 
+## Lesson Plan
+See [`LESSON_PLAN.md`](LESSON_PLAN.md) for the day-by-day schedule.
+
+## Diagrams
+See [`../diagrams/week05_n8n/`](../diagrams/week05_n8n/README.md)
+
+## Importable Workflows
+See [`workflows/README.md`](workflows/README.md) for import instructions and the 7 exports.
+
 ## Modules
 1. n8n Basics — nodes, triggers, workflows
 2. Email Automation — IMAP trigger -> AI classification -> auto-reply

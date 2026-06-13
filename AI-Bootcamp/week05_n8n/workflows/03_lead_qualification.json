@@ -1,0 +1,77 @@
+{
+  "name": "03 - Lead Qualification: webhook to AI score to CRM",
+  "nodes": [
+    {
+      "parameters": { "httpMethod": "POST", "path": "lead-intake", "responseMode": "responseNode", "options": {} },
+      "id": "c3000000-0000-0000-0000-000000000001",
+      "name": "Webhook (Lead Form)",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [240, 300],
+      "webhookId": "lead-intake"
+    },
+    {
+      "parameters": {
+        "modelId": "claude-opus-4-8",
+        "messages": {
+          "values": [
+            { "role": "system", "content": "Score this lead 0-100 for sales-readiness based on company size, budget, and intent. Reply with ONLY a JSON object: {\"score\": <int>, \"reason\": <string>}." },
+            { "role": "user", "content": "=Name: {{$json.body.name}}\nCompany: {{$json.body.company}}\nSize: {{$json.body.company_size}}\nBudget: {{$json.body.budget}}\nMessage: {{$json.body.message}}" }
+          ]
+        },
+        "options": { "maxTokens": 256 }
+      },
+      "id": "c3000000-0000-0000-0000-000000000002",
+      "name": "Score Lead (Claude)",
+      "type": "n8n-nodes-base.anthropic",
+      "typeVersion": 1,
+      "position": [480, 300],
+      "credentials": { "anthropicApi": { "id": "REPLACE_WITH_ANTHROPIC_CREDENTIAL_ID", "name": "Anthropic account" } }
+    },
+    {
+      "parameters": { "jsCode": "const out = JSON.parse($input.first().json.text);\nreturn [{ json: { ...$('Webhook (Lead Form)').first().json.body, score: out.score, reason: out.reason } }];" },
+      "id": "c3000000-0000-0000-0000-000000000003",
+      "name": "Parse Score",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [700, 300]
+    },
+    {
+      "parameters": {
+        "conditions": { "options": {}, "conditions": [{ "leftValue": "={{$json.score}}", "rightValue": 70, "operator": { "type": "number", "operation": "gte" } }] }
+      },
+      "id": "c3000000-0000-0000-0000-000000000004",
+      "name": "Qualified?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [920, 300]
+    },
+    {
+      "parameters": { "resource": "record", "operation": "create", "options": {} },
+      "id": "c3000000-0000-0000-0000-000000000005",
+      "name": "Create CRM Record (Airtable)",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [1160, 220],
+      "credentials": { "airtableTokenApi": { "id": "REPLACE_WITH_AIRTABLE_CREDENTIAL_ID", "name": "Airtable account" } }
+    },
+    {
+      "parameters": { "respondWith": "json", "responseBody": "={{ { \"received\": true, \"score\": $json.score } }}", "options": {} },
+      "id": "c3000000-0000-0000-0000-000000000006",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [1160, 380]
+    }
+  ],
+  "connections": {
+    "Webhook (Lead Form)": { "main": [[{ "node": "Score Lead (Claude)", "type": "main", "index": 0 }]] },
+    "Score Lead (Claude)": { "main": [[{ "node": "Parse Score", "type": "main", "index": 0 }]] },
+    "Parse Score": { "main": [[{ "node": "Qualified?", "type": "main", "index": 0 }]] },
+    "Qualified?": { "main": [[{ "node": "Create CRM Record (Airtable)", "type": "main", "index": 0 }], [{ "node": "Respond to Webhook", "type": "main", "index": 0 }]] },
+    "Create CRM Record (Airtable)": { "main": [[{ "node": "Respond to Webhook", "type": "main", "index": 0 }]] }
+  },
+  "active": false,
+  "settings": { "executionOrder": "v1" },
+  "tags": [{ "name": "ai-bootcamp" }, { "name": "week05" }]
+}

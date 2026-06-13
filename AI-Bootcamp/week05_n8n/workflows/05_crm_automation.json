@@ -1,0 +1,57 @@
+{
+  "name": "05 - CRM Automation: enrich and sync contacts",
+  "nodes": [
+    {
+      "parameters": { "rule": { "interval": [{ "field": "hours", "hoursInterval": 6 }] } },
+      "id": "e5000000-0000-0000-0000-000000000001",
+      "name": "Schedule (every 6h)",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [240, 300]
+    },
+    {
+      "parameters": { "resource": "record", "operation": "search", "options": {} },
+      "id": "e5000000-0000-0000-0000-000000000002",
+      "name": "Get New Contacts (Airtable)",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [460, 300],
+      "credentials": { "airtableTokenApi": { "id": "REPLACE_WITH_AIRTABLE_CREDENTIAL_ID", "name": "Airtable account" } }
+    },
+    {
+      "parameters": {
+        "modelId": "claude-opus-4-8",
+        "messages": {
+          "values": [
+            { "role": "system", "content": "Given a company name, return a one-sentence summary and a likely industry as JSON: {\"summary\": string, \"industry\": string}." },
+            { "role": "user", "content": "=Company: {{$json.fields.Company}}" }
+          ]
+        },
+        "options": { "maxTokens": 200 }
+      },
+      "id": "e5000000-0000-0000-0000-000000000003",
+      "name": "Enrich with Claude",
+      "type": "n8n-nodes-base.anthropic",
+      "typeVersion": 1,
+      "position": [680, 300],
+      "credentials": { "anthropicApi": { "id": "REPLACE_WITH_ANTHROPIC_CREDENTIAL_ID", "name": "Anthropic account" } }
+    },
+    {
+      "parameters": { "resource": "record", "operation": "update", "options": {} },
+      "id": "e5000000-0000-0000-0000-000000000004",
+      "name": "Update Contact (HubSpot)",
+      "type": "n8n-nodes-base.hubspot",
+      "typeVersion": 2.1,
+      "position": [900, 300],
+      "credentials": { "hubspotApi": { "id": "REPLACE_WITH_HUBSPOT_CREDENTIAL_ID", "name": "HubSpot account" } }
+    }
+  ],
+  "connections": {
+    "Schedule (every 6h)": { "main": [[{ "node": "Get New Contacts (Airtable)", "type": "main", "index": 0 }]] },
+    "Get New Contacts (Airtable)": { "main": [[{ "node": "Enrich with Claude", "type": "main", "index": 0 }]] },
+    "Enrich with Claude": { "main": [[{ "node": "Update Contact (HubSpot)", "type": "main", "index": 0 }]] }
+  },
+  "active": false,
+  "settings": { "executionOrder": "v1" },
+  "tags": [{ "name": "ai-bootcamp" }, { "name": "week05" }]
+}

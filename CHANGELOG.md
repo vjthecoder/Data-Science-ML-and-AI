@@ -6,6 +6,11 @@ All notable changes to this project are documented in this file. Format based on
 
 ## [Unreleased]
 ### Added
+- Week 5: AI Automation with n8n — complete (7 importable workflow JSON exports: beginner,
+  email automation, lead qualification, AI agent with tools+memory, CRM automation, WhatsApp
+  assistant, multi-agent pipeline; workflows README with import guide; assignments, solutions,
+  lesson plan, diagrams, interview questions). LLM nodes use Anthropic `claude-opus-4-8`;
+  credentials use placeholders (kept out of JSON).
 - Week 4: RAG (Retrieval Augmented Generation) — complete (6 Marimo notebooks on architecture,
   chunking, vector search FAISS/Chroma, hybrid search + reranking, metadata filtering,
   evaluation; 3 labs for LangChain/LlamaIndex/hybrid+rerank; PDF Chatbot project with Streamlit
