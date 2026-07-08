@@ -5,6 +5,9 @@ All notable changes to this project are documented in this file. Format based on
 [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
+### Added
+- Resources filled out: comprehensive glossary (terms by week), curated further-reading list,
+  and cheat sheets (Pandas, Prompt Engineering). Root repo README now indexes the bootcamp.
 
 ## [1.0.0] - 2026-06-13
 All six weeks of the **AI Engineering Bootcamp** are complete and ready for learners.
