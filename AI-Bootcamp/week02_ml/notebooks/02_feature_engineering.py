@@ -8,8 +8,8 @@ app = marimo.App(width="medium")
 def __():
     import marimo as mo
     import pandas as pd
-    from sklearn.preprocessing import StandardScaler, OneHotEncoder
     from sklearn.model_selection import train_test_split
+    from sklearn.preprocessing import OneHotEncoder, StandardScaler
     return OneHotEncoder, StandardScaler, mo, pd, train_test_split
 
 
@@ -136,7 +136,8 @@ def __(mo):
 def __(pd, train_test_split):
     from sklearn.compose import ColumnTransformer
     from sklearn.pipeline import Pipeline
-    from sklearn.preprocessing import OneHotEncoder as OHE, StandardScaler as SS
+    from sklearn.preprocessing import OneHotEncoder as OHE
+    from sklearn.preprocessing import StandardScaler as SS
 
     leads = pd.read_csv("../../resources/datasets/leads.csv")
     leads["engagement_score"] = leads["website_visits"] + leads["emails_opened"] * 2

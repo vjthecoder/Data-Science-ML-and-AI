@@ -7,8 +7,8 @@ app = marimo.App(width="medium")
 @app.cell
 def __():
     import marimo as mo
-    import pandas as pd
     import matplotlib.pyplot as plt
+    import pandas as pd
     import seaborn as sns
     return mo, pd, plt, sns
 
@@ -41,7 +41,7 @@ def __(pd):
 
 
 @app.cell
-def __(mkt):
+def __(mkt, pd):
     mkt["ctr"] = mkt["clicks"] / mkt["impressions"]
     mkt["conversion_rate"] = mkt["conversions"] / mkt["clicks"]
     mkt["cpa"] = mkt["spend"] / mkt["conversions"].replace(0, pd.NA)

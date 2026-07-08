@@ -12,7 +12,6 @@ import os
 import tempfile
 
 import streamlit as st
-
 from agent import (
     analyze_resume,
     detect_skill_gap,

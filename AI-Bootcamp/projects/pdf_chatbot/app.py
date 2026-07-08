@@ -12,7 +12,6 @@ import os
 import tempfile
 
 import streamlit as st
-
 from rag_core import answer, build_chunks, build_index
 
 st.set_page_config(page_title="PDF Chatbot", page_icon="📄")

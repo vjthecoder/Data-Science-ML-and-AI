@@ -7,12 +7,16 @@ app = marimo.App(width="medium")
 @app.cell
 def __():
     import marimo as mo
-    import pandas as pd
-    import numpy as np
     import matplotlib.pyplot as plt
+    import numpy as np
+    import pandas as pd
     from sklearn.metrics import (
-        confusion_matrix, ConfusionMatrixDisplay, classification_report,
-        roc_curve, roc_auc_score, precision_recall_curve,
+        ConfusionMatrixDisplay,
+        classification_report,
+        confusion_matrix,
+        precision_recall_curve,
+        roc_auc_score,
+        roc_curve,
     )
     return (
         ConfusionMatrixDisplay,
@@ -106,11 +110,11 @@ def __(mo):
 
 @app.cell
 def __(pd):
-    from sklearn.model_selection import train_test_split
     from sklearn.compose import ColumnTransformer
-    from sklearn.pipeline import Pipeline
-    from sklearn.preprocessing import StandardScaler, OneHotEncoder
     from sklearn.ensemble import RandomForestClassifier
+    from sklearn.model_selection import train_test_split
+    from sklearn.pipeline import Pipeline
+    from sklearn.preprocessing import OneHotEncoder, StandardScaler
 
     df = pd.read_csv("../../resources/datasets/churn.csv")
     X = df.drop(columns=["customer_id", "churned"])

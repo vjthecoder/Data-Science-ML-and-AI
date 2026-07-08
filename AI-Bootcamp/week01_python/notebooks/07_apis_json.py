@@ -6,8 +6,9 @@ app = marimo.App(width="medium")
 
 @app.cell
 def __():
-    import marimo as mo
     import json
+
+    import marimo as mo
     return json, mo
 
 

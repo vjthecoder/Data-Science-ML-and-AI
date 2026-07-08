@@ -4,9 +4,9 @@ Run:
     cd app && python -m pytest test_app.py
 """
 
-from resume_parser import extract_skills, skill_gap
-from rag import KnowledgeBase, build_context
 from agent import coach
+from rag import KnowledgeBase, build_context
+from resume_parser import extract_skills, skill_gap
 
 
 def test_extract_skills():

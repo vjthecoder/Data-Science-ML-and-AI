@@ -6,8 +6,9 @@ app = marimo.App(width="medium")
 
 @app.cell
 def __():
-    import marimo as mo
     import sys
+
+    import marimo as mo
     sys.path.insert(0, "../app")
     return mo, sys
 

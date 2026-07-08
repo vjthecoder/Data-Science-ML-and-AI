@@ -15,15 +15,14 @@ Endpoints:
 
 from __future__ import annotations
 
-from fastapi import FastAPI
-from pydantic import BaseModel, Field
-
 from agent import (
     analyze_resume,
     detect_skill_gap,
     generate_interview_questions,
     generate_learning_path,
 )
+from fastapi import FastAPI
+from pydantic import BaseModel, Field
 
 app = FastAPI(title="AI Career Coach", version="1.0.0")
 

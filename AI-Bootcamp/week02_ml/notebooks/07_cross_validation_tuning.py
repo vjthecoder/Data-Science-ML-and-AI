@@ -7,15 +7,19 @@ app = marimo.App(width="medium")
 @app.cell
 def __():
     import marimo as mo
-    import pandas as pd
     import numpy as np
-    from sklearn.model_selection import (
-        cross_val_score, StratifiedKFold, GridSearchCV, RandomizedSearchCV, train_test_split,
-    )
-    from sklearn.ensemble import RandomForestClassifier
+    import pandas as pd
     from sklearn.compose import ColumnTransformer
+    from sklearn.ensemble import RandomForestClassifier
+    from sklearn.model_selection import (
+        GridSearchCV,
+        RandomizedSearchCV,
+        StratifiedKFold,
+        cross_val_score,
+        train_test_split,
+    )
     from sklearn.pipeline import Pipeline
-    from sklearn.preprocessing import StandardScaler, OneHotEncoder
+    from sklearn.preprocessing import OneHotEncoder, StandardScaler
     return (
         ColumnTransformer,
         GridSearchCV,
@@ -157,7 +161,7 @@ def __(mo):
 
 @app.cell
 def __(X_test, grid, y_test):
-    from sklearn.metrics import f1_score, classification_report
+    from sklearn.metrics import classification_report, f1_score
 
     best_model = grid.best_estimator_
     test_preds = best_model.predict(X_test)

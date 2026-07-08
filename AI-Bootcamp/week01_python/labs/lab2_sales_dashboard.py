@@ -7,8 +7,8 @@ app = marimo.App(width="medium")
 @app.cell
 def __():
     import marimo as mo
-    import pandas as pd
     import matplotlib.pyplot as plt
+    import pandas as pd
     import seaborn as sns
     return mo, pd, plt, sns
 

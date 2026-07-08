@@ -7,15 +7,15 @@ app = marimo.App(width="medium")
 @app.cell
 def __():
     import marimo as mo
-    import pandas as pd
     import matplotlib.pyplot as plt
-    from sklearn.model_selection import train_test_split, cross_val_score, StratifiedKFold
+    import pandas as pd
     from sklearn.compose import ColumnTransformer
-    from sklearn.pipeline import Pipeline
-    from sklearn.preprocessing import StandardScaler, OneHotEncoder
-    from sklearn.linear_model import LogisticRegression
     from sklearn.ensemble import RandomForestClassifier
+    from sklearn.linear_model import LogisticRegression
     from sklearn.metrics import classification_report, roc_auc_score
+    from sklearn.model_selection import StratifiedKFold, cross_val_score, train_test_split
+    from sklearn.pipeline import Pipeline
+    from sklearn.preprocessing import OneHotEncoder, StandardScaler
     return (
         ColumnTransformer,
         LogisticRegression,

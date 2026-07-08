@@ -85,8 +85,9 @@ def __(mo):
 def __():
     # Offline-safe hybrid demo: BM25-lite + hash vectors + RRF (no downloads)
     import math
-    import numpy as np
     from collections import Counter
+
+    import numpy as np
 
     chunks = [
         "The X-450 router supports dual-band WiFi.",

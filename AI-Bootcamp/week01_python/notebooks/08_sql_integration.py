@@ -6,8 +6,9 @@ app = marimo.App(width="medium")
 
 @app.cell
 def __():
-    import marimo as mo
     import sqlite3
+
+    import marimo as mo
     import pandas as pd
     return mo, pd, sqlite3
 

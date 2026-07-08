@@ -7,11 +7,11 @@ app = marimo.App(width="medium")
 @app.cell
 def __():
     import marimo as mo
-    import pandas as pd
     import matplotlib.pyplot as plt
-    from sklearn.preprocessing import StandardScaler
-    from sklearn.cluster import KMeans, AgglomerativeClustering
+    import pandas as pd
+    from sklearn.cluster import AgglomerativeClustering, KMeans
     from sklearn.metrics import silhouette_score
+    from sklearn.preprocessing import StandardScaler
     return AgglomerativeClustering, KMeans, StandardScaler, mo, pd, plt, silhouette_score
 
 

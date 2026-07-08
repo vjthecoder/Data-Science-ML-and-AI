@@ -7,16 +7,20 @@ app = marimo.App(width="medium")
 @app.cell
 def __():
     import marimo as mo
-    import pandas as pd
     import matplotlib.pyplot as plt
-    from sklearn.model_selection import train_test_split, GridSearchCV, StratifiedKFold
+    import pandas as pd
     from sklearn.compose import ColumnTransformer
-    from sklearn.pipeline import Pipeline
-    from sklearn.preprocessing import StandardScaler, OneHotEncoder
-    from xgboost import XGBClassifier
     from sklearn.metrics import (
-        classification_report, roc_auc_score, roc_curve, confusion_matrix, ConfusionMatrixDisplay,
+        ConfusionMatrixDisplay,
+        classification_report,
+        confusion_matrix,
+        roc_auc_score,
+        roc_curve,
     )
+    from sklearn.model_selection import GridSearchCV, StratifiedKFold, train_test_split
+    from sklearn.pipeline import Pipeline
+    from sklearn.preprocessing import OneHotEncoder, StandardScaler
+    from xgboost import XGBClassifier
     return (
         ColumnTransformer,
         ConfusionMatrixDisplay,
