@@ -1,0 +1,11 @@
+anthropic
+fastapi
+uvicorn[standard]
+streamlit
+pydantic
+pypdf
+numpy
+python-dotenv
+# Optional for production-grade embeddings/RAG:
+# sentence-transformers
+# chromadb

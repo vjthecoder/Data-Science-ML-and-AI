@@ -1,0 +1,79 @@
+{
+  "name": "07 - Multi-Agent: researcher to writer to reviewer",
+  "nodes": [
+    {
+      "parameters": { "httpMethod": "POST", "path": "content-pipeline", "responseMode": "responseNode", "options": {} },
+      "id": "a7000000-0000-0000-0000-000000000001",
+      "name": "Webhook (Topic)",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [240, 300],
+      "webhookId": "content-pipeline"
+    },
+    {
+      "parameters": {
+        "modelId": "claude-opus-4-8",
+        "messages": { "values": [
+          { "role": "system", "content": "You are a research assistant. Return 5 concise factual bullet points." },
+          { "role": "user", "content": "=Research this topic: {{$json.body.topic}}" }
+        ] },
+        "options": { "maxTokens": 500 }
+      },
+      "id": "a7000000-0000-0000-0000-000000000002",
+      "name": "Agent 1: Researcher",
+      "type": "n8n-nodes-base.anthropic",
+      "typeVersion": 1,
+      "position": [460, 300],
+      "credentials": { "anthropicApi": { "id": "REPLACE_WITH_ANTHROPIC_CREDENTIAL_ID", "name": "Anthropic account" } }
+    },
+    {
+      "parameters": {
+        "modelId": "claude-opus-4-8",
+        "messages": { "values": [
+          { "role": "system", "content": "You are a technical writer. Turn the notes into a tight 150-word paragraph." },
+          { "role": "user", "content": "=Notes:\n{{$json.text}}" }
+        ] },
+        "options": { "maxTokens": 600 }
+      },
+      "id": "a7000000-0000-0000-0000-000000000003",
+      "name": "Agent 2: Writer",
+      "type": "n8n-nodes-base.anthropic",
+      "typeVersion": 1,
+      "position": [680, 300],
+      "credentials": { "anthropicApi": { "id": "REPLACE_WITH_ANTHROPIC_CREDENTIAL_ID", "name": "Anthropic account" } }
+    },
+    {
+      "parameters": {
+        "modelId": "claude-opus-4-8",
+        "messages": { "values": [
+          { "role": "system", "content": "You are an editor. Improve clarity, flag unsupported claims, and return the final text." },
+          { "role": "user", "content": "=Draft:\n{{$json.text}}" }
+        ] },
+        "options": { "maxTokens": 600 }
+      },
+      "id": "a7000000-0000-0000-0000-000000000004",
+      "name": "Agent 3: Reviewer",
+      "type": "n8n-nodes-base.anthropic",
+      "typeVersion": 1,
+      "position": [900, 300],
+      "credentials": { "anthropicApi": { "id": "REPLACE_WITH_ANTHROPIC_CREDENTIAL_ID", "name": "Anthropic account" } }
+    },
+    {
+      "parameters": { "respondWith": "json", "responseBody": "={{ { \"final\": $json.text } }}", "options": {} },
+      "id": "a7000000-0000-0000-0000-000000000005",
+      "name": "Respond",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [1120, 300]
+    }
+  ],
+  "connections": {
+    "Webhook (Topic)": { "main": [[{ "node": "Agent 1: Researcher", "type": "main", "index": 0 }]] },
+    "Agent 1: Researcher": { "main": [[{ "node": "Agent 2: Writer", "type": "main", "index": 0 }]] },
+    "Agent 2: Writer": { "main": [[{ "node": "Agent 3: Reviewer", "type": "main", "index": 0 }]] },
+    "Agent 3: Reviewer": { "main": [[{ "node": "Respond", "type": "main", "index": 0 }]] }
+  },
+  "active": false,
+  "settings": { "executionOrder": "v1" },
+  "tags": [{ "name": "ai-bootcamp" }, { "name": "week05" }]
+}

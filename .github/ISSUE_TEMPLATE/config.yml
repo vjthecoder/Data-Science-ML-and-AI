@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Ask a Question
+    url: https://github.com/vjthecoder/Data-Science-ML-and-AI/discussions
+    about: Use GitHub Discussions for general questions about the curriculum.

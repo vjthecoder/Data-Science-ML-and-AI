@@ -1,0 +1,44 @@
+{
+  "name": "01 - Beginner: Manual Trigger to Set to NoOp",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "a1b2c3d4-0001-0001-0001-000000000001",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            { "id": "1", "name": "greeting", "value": "Hello, AI Bootcamp!", "type": "string" },
+            { "id": "2", "name": "week", "value": 5, "type": "number" }
+          ]
+        },
+        "options": {}
+      },
+      "id": "a1b2c3d4-0001-0001-0001-000000000002",
+      "name": "Set Fields",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {},
+      "id": "a1b2c3d4-0001-0001-0001-000000000003",
+      "name": "No Operation",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [680, 300]
+    }
+  ],
+  "connections": {
+    "Manual Trigger": { "main": [[{ "node": "Set Fields", "type": "main", "index": 0 }]] },
+    "Set Fields": { "main": [[{ "node": "No Operation", "type": "main", "index": 0 }]] }
+  },
+  "active": false,
+  "settings": { "executionOrder": "v1" },
+  "tags": [{ "name": "ai-bootcamp" }, { "name": "week05" }]
+}

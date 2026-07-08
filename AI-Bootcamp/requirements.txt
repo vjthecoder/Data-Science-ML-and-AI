@@ -1,0 +1,32 @@
+# Core
+numpy
+pandas
+matplotlib
+seaborn
+jupyter
+notebook
+marimo
+
+# ML
+scikit-learn
+xgboost
+
+# GenAI
+openai
+anthropic
+google-generativeai
+transformers
+sentence-transformers
+
+# RAG / Vector DBs
+langchain
+llama-index
+chromadb
+faiss-cpu
+
+# App / Deployment
+streamlit
+fastapi
+uvicorn
+python-dotenv
+requests
